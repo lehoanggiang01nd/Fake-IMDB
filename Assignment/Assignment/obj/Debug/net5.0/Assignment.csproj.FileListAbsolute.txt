@@ -165,3 +165,4 @@ C:\Users\MY LAPTOP\source\repos\Assignment\Assignment\obj\Debug\net5.0\Assignmen
 C:\Users\MY LAPTOP\source\repos\Assignment\Assignment\obj\Debug\net5.0\Assignment.genruntimeconfig.cache
 C:\Users\MY LAPTOP\source\repos\Assignment\Assignment\obj\Debug\net5.0\Assignment.csproj.AssemblyReference.cache
 C:\Users\MY LAPTOP\source\repos\Assignment\Assignment\obj\Debug\net5.0\Razor\Pages\DeleteComment.cshtml.g.cs
+C:\Users\MY LAPTOP\source\repos\Assignment\Assignment\obj\Debug\net5.0\Razor\Pages\DashBoard.cshtml.g.cs

@@ -24,19 +24,16 @@ namespace Assignment.Models.DAO
             }
             return person;
         }
-        public static void UpdatePerson(int id,string fullname,string gender,string password,int type,string email)
+        public static void UpdatePerson(int id,string fullname,string gender)
         {
             try
             {
-                Person p = new Person();
-                p.PersonId = id;
-                p.Fullname = fullname;
-                p.Gender = gender;
-                p.Password = password;
-                p.Type = type;
-                p.Email = email;
+                
                 using (CinemaDBContext context = new CinemaDBContext())
                 {
+                    Person p = context.Persons.Find(id);
+                    p.Fullname = fullname;
+                    p.Gender = gender;
                     context.Persons.Update(p);
                     context.SaveChanges();
                 }

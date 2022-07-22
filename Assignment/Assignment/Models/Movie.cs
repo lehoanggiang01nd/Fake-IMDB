@@ -13,6 +13,7 @@ namespace Assignment.Models
         public string Image { get; set; }
         public int? GernesId { get; set; }
 
+        public string Descripsion { get; set; }
         public virtual Genre Gernes { get; set; }
     }
 }

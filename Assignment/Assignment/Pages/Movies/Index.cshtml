@@ -38,7 +38,7 @@
                 @Html.DisplayFor(modelItem => item.Year)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Image)
+                <img src="@Html.DisplayFor(modelItem => item.Image)" style="object-fit:contain;width:100%;height:200px"/>                
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Gernes.Descripsion)

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Assignment.Models;
 using Assignment.Models.DAO;
+using Assignment.Security;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -57,7 +58,8 @@ namespace Assignment.Pages
                 var person = PersonDAO.getCustomerByEmail(SignupSetData.email);
                 if(person == null)
                 {
-                    PersonDAO.Signup(SignupSetData.email, SignupSetData.fullname, SignupSetData.password, SignupSetData.gender,2);
+                    string EncrytPassword = SecurityString.GetHash(SignupSetData.password);
+                    PersonDAO.Signup(SignupSetData.email, SignupSetData.fullname, EncrytPassword, SignupSetData.gender,2);
                     return Redirect("/UserLogin");
                 }
                 else

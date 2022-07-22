@@ -37,9 +37,7 @@ namespace Assignment.Pages
         public IActionResult OnPost()
         {
             string uid = HttpContext.Session.GetString("userId");
-            var person1 = context.Persons.FirstOrDefault(p => p.PersonId == int.Parse(uid));
-            PersonDAO.UpdatePerson(int.Parse(uid), person.Fullname, person.Gender,person1.Password,(int)person1.Type,person1.Email);
-
+            PersonDAO.UpdatePerson(int.Parse(uid),person.Fullname,person.Gender);
             return Redirect("/UserProfile");
         }
 

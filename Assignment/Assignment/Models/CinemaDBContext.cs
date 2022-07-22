@@ -59,6 +59,7 @@ namespace Assignment.Models
                     .WithMany(p => p.Movies)
                     .HasForeignKey(d => d.GernesId)
                     .HasConstraintName("FK_Movies_Genres");
+
             });
 
             modelBuilder.Entity<Person>(entity =>

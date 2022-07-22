@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Assignment.Security;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -40,7 +41,8 @@ namespace Assignment.Pages
         {
             if (ModelState.IsValid)
             {
-                var user = context.Persons.SingleOrDefault(i => i.Email == LoginDataSet.username && i.Password == LoginDataSet.password);
+                string EncrytPassword = SecurityString.GetHash(LoginDataSet.password);
+                var user = context.Persons.SingleOrDefault(i => i.Email == LoginDataSet.username && i.Password == EncrytPassword);
                 if (user != null)
                 {
                     HttpContext.Session.SetString("user", user.Email);

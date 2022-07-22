@@ -17,7 +17,7 @@ namespace Assignment.Pages
         [Required(AllowEmptyStrings = false, ErrorMessage = "Comment is required")]
         public string comment { get; set; }
 
-        [Display(Name = "fullname")]
+        [Display(Name = "Rating")]
         [Required(ErrorMessage = "Rating is required")]
         public float rating { get; set; }
     }
@@ -37,7 +37,7 @@ namespace Assignment.Pages
 
         public Movie Movie { get; set; }
 
-        public float AvarageRating { get; set; }
+        public float AvarageRating { get; set; } = 0;
         public IActionResult OnGet(int? mid)
         {
             if(mid == null)
@@ -50,8 +50,9 @@ namespace Assignment.Pages
 
             var total = context.Rates.Where(r => r.MovieId == mid).Sum(r => r.NumbericRating);
 
-            AvarageRating = (float)(total / rate.Count);
+            var AvarageRatingBeforFormat = ((float)(total / rate.Count)).ToString("0.0");
 
+            AvarageRating = float.Parse(AvarageRatingBeforFormat);
 
             if(Movie == null)
             {

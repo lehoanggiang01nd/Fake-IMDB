@@ -25,10 +25,19 @@ namespace Assignment.Pages
         [BindProperty(SupportsGet = true)]
         public string SearchTXT { get; set; }
 
+
         public IActionResult OnGet(int ?id)
         {
-            Movies = MovieDAO.GetMoviesByName(SearchTXT);
-            if(id != null)
+            //Movies = MovieDAO.GetMoviesByName(SearchTXT);
+            if (string.IsNullOrEmpty(SearchTXT))
+            {
+                Movies = context.Movies.Include(s => s.Gernes).ToList();
+            }
+            else
+            {
+                Movies = context.Movies.Include(s => s.Gernes).Where(e => e.Title.Contains(SearchTXT)).ToList();
+            }
+            if (id != null)
             {
                 Movies = context.Movies.Where(s => s.GernesId == id).ToList();
             }

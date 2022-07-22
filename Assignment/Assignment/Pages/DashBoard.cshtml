@@ -1,0 +1,60 @@
+﻿@page
+@model Assignment.Pages.DashBoardModel
+@{
+}
+
+<p class="h1 text-center mb-2">Dashboard</p>
+<div class="d-flex justify-content-around">
+    <div class="card text-center m-1">
+        <div class="card-header bg-success text-white h2">
+            User In System:
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Number of User:</h5>
+            <p class="card-text"><strong>@Model.UserNumber</strong></p>
+        </div>
+    </div>
+    <div class="card text-center m-1">
+        <div class="card-header bg-secondary text-white h2">
+            Comment In System:
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Number of Comment</h5>
+            <p class="card-text"><strong>@Model.CommentNumber</strong></p>
+        </div>
+    </div>
+    <div class="card text-center m-1">
+        <div class="card-header bg-warning text-white h2">
+            Rating In System:
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Number of Rating</h5>
+            <p class="card-text"><Strong>@Model.RatingNumber</Strong></p>
+        </div>
+    </div>
+</div>
+<canvas id="myChart" style="width:100%;max-width:600px" class="mt-2"></canvas>
+
+<script>
+    var xValues = ["User", "Comment", "Rating"];
+    var yValues = [@Model.UserNumber,@Model.CommentNumber,@Model.RatingNumber];
+    var barColors = ["green", "blue","yellow"];
+
+new Chart("myChart", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: "System"
+    }
+  }
+});
+</script>

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Assignment.Models;
 using Assignment.Models.DAO;
+using Assignment.Security;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -57,9 +58,11 @@ namespace Assignment.Pages
             {
                string uid = HttpContext.Session.GetString("userId");
                person = context.Persons.Where(p => p.PersonId == int.Parse(uid)).FirstOrDefault();
-               if(person.Password == Change.CurrentPassword)
+               string EncrytCurrentPassword = SecurityString.GetHash(Change.CurrentPassword);
+                if (person.Password == EncrytCurrentPassword)
                 {
-                    PersonDAO.ChangePassword(person.PersonId,Change.NewPassword);
+                    string EncrytPassword = SecurityString.GetHash(Change.NewPassword);
+                    PersonDAO.ChangePassword(person.PersonId,EncrytPassword);
                     return Redirect("/UserProfile");
                 }
                 else
