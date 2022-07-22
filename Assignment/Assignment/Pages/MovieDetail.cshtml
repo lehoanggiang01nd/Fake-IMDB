@@ -1,0 +1,128 @@
+﻿@page
+@model Assignment.Pages.MovieDetailModel
+@{
+}
+@using Microsoft.AspNetCore.Http
+<style>
+    body {
+        margin-top: 20px;
+    }
+
+    .comment-wrapper .panel-body {
+        max-height: 650px;
+        overflow: auto;
+    }
+
+    .comment-wrapper .media-list .media img {
+        width: 64px;
+        height: 64px;
+        border: 2px solid #e5e7e8;
+    }
+
+    .comment-wrapper .media-list .media {
+        border-bottom: 1px dashed #efefef;
+        margin-bottom: 25px;
+    }
+
+    .media-list .media {
+        text-decoration: none;
+    }
+</style>
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <img class="rounded img-thumbnail" src="@(Model.Movie.Image)" />
+        </div>
+        <div class="col-md-8">
+            <p class="h1 mb-5">@Model.Movie.Title</p>
+            <div>
+                <span class="badge rounded-pill text-bg-primary p-2 mb-2">@Model.Movie.Gernes.Descripsion</span>
+                <div class="d-flex mb-2">
+                    <p><strong>Rating:</strong> @Model.AvarageRating/10</p>
+                    <i class="bi bi-star-fill text-warning"></i>
+                </div>
+            </div>
+            <div>
+                <p>Curious which components explicitly require our JavaScript and Popper? Click the show components link below. If you’re at all unsure about the general page structure, keep reading for an example page template.</p>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="row bootstrap snippets bootdeys">
+            <div class="col-md-8 col-sm-12">
+                <div class="comment-wrapper">
+                    <div class="panel panel-info">
+                        <div class="panel-heading mb-1">
+                            <strong>Review Section</strong>
+                        </div>
+                        <div class="panel-body">
+
+                            <form method="post">
+                                <textarea class="form-control" placeholder="write a comment..." rows="3" asp-for="comment.comment"></textarea>
+                                <span class="text-danger" asp-validation-for="comment.comment"></span>
+                                <p><strong>Rating:</strong><input type="number" min="0" max="10" class="form-control w-auto" step="0.5" value="5" asp-for="comment.rating" /></p>
+                                <span class="text-danger" asp-validation-for="comment.rating"></span>
+                                <br />
+                                <button type="submit" class="btn btn-info pull-right">Post</button>
+                                <div class="clearfix"></div>
+                            </form>
+
+                            <hr>
+                            <ul class="media-list">
+                                @foreach (var item in Model.rate)
+                                {
+                                    <li class="media d-flex">
+                                        <div>
+                                            <a href="#" class="pull-left">
+                                                <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle rounded-circle">
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <div class="media-body">
+                                                <span class="text-muted pull-right">
+                                                    <small class="text-muted">@item.Time</small>
+                                                </span>
+                                                <strong class="text-success">@item.Person.Email</strong>
+                                                <div class="d-flex">
+                                                    <p><strong>Rating:</strong> @item.NumbericRating</p>
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                </div>
+                                                <p>
+                                                    @item.Comment
+                                                </p>
+                                                @if (HttpContext.Session.GetString("userId") == (item.PersonId).ToString())
+                                                {
+                                                    <a class="alert-link" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</a>
+                                                    @*Modal Delete*@
+                                                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    Are you sure you want to delete this comment ?
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                    <a class="btn btn-primary" asp-page="/DeleteComment" asp-route-pid="@item.PersonId" asp-route-mid="@item.MovieId">Yes,I want to delete this comment</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+﻿@page
+@model Assignment.Pages.Persons.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Person[0].Fullname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Person[0].Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Person[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Person[0].Type)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Person) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fullname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                <a asp-page="./Details" asp-route-id="@item.PersonId">Details</a> |
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

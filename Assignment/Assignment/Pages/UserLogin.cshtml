@@ -1,0 +1,32 @@
+﻿@page
+@model Assignment.Pages.UserLoginModel
+@{
+}
+
+<div class="container">
+    <section id="user" class="loginUser tabcontent">
+        <div class="container-fluid mt-2">
+            <p class="h1">Please login here</p>
+            <p class="h4">Enter your detail below</p>
+
+            <form method="post">
+                <div class="mb-3">
+                    <label for="username" class="form-label" asp-for="LoginDataSet.username">Username</label>
+                    <input type="text" class="form-control" id="username" aria-describedby="emailHelp" asp-for="LoginDataSet.username">
+                    <span class="text-danger" asp-validation-for="LoginDataSet.username"></span>
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label" asp-for="LoginDataSet.password">Password</label>
+                    <input type="password" class="form-control" id="password" asp-for="LoginDataSet.password">
+                    <span class="text-danger" asp-validation-for="LoginDataSet.password"></span>
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <span class="text-danger">@TempData["ErrorMes"]</span>
+                    <a class="link-primary" asp-page="/SignupUser">Don't have account? <strong>Sign-up Today</strong></a>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>

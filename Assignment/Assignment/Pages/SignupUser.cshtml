@@ -1,0 +1,47 @@
+﻿@page
+@model Assignment.Pages.SignupUserModel
+@{
+}
+
+<div class="container">
+    <p class="h1 text-center row">Sign-up</p>
+    <p class="h5 text-center row">Join with us today</p>
+    <br />
+    <form class="row g-3 row" method="post">
+        <div class="col-md-12">
+            <label for="inputEmail4" class="form-label" asp-for="SignupSetData.email">Email</label>
+            <input type="email" class="form-control" id="inputEmail4" asp-for="SignupSetData.email">
+            <span class="text-danger" asp-validation-for="SignupSetData.email"></span>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label" asp-for="SignupSetData.fullname">Fullname</label>
+            <input type="text" class="form-control" asp-for="SignupSetData.fullname">
+            <span class="text-danger" asp-validation-for="SignupSetData.fullname"></span>
+        </div>
+
+        <div class="col-md-6">
+            <label for="inputPassword1" class="form-label" asp-for="SignupSetData.password">Password</label>
+            <input type="password" class="form-control" id="inputPassword4" asp-for="SignupSetData.password">
+            <span class="text-danger" asp-validation-for="SignupSetData.password"></span>
+        </div>
+        <div class="col-md-6">
+            <label for="inputPassword2" class="form-label" asp-for="SignupSetData.repassword">Re-Password</label>
+            <input type="password" class="form-control" id="inputPassword2" asp-for="SignupSetData.repassword">
+            <span class="text-danger" asp-validation-for="SignupSetData.repassword"></span>
+        </div>
+        <div class="col-12">
+            <label for="inputAddress" class="form-label" asp-for="SignupSetData.gender">Gender</label>
+            <select class="form-select" asp-for="SignupSetData.gender">
+                <option value=""></option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+            <span class="text-danger" asp-validation-for="SignupSetData.gender"></span>
+        </div>
+        <div class="col-12 mt-3">
+            <button type="submit" class="btn btn-primary">Sign up</button>
+            <span class="text-danger">@TempData["ErrorMes"]</span>
+        </div>
+    </form>
+</div>
